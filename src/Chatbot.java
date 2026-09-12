@@ -125,4 +125,58 @@ public class Chatbot {
 
         return "I'm still learning. Could you please rephrase that?";
     }
+}import java.util.Scanner;
+
+public class Chatbot {
+
+    public static void main(String[] args) {
+
+        Scanner scanner = new Scanner(System.in);
+        ChatbotEngine chatbot = new ChatbotEngine();
+
+        System.out.println("======================================");
+        System.out.println("          CODEALPHA AI CHATBOT");
+        System.out.println("======================================");
+
+        System.out.println("Bot: Hello! I'm your Java AI Chatbot.");
+        System.out.println("Bot: Type 'help' to see what I can do.");
+        System.out.println("Bot: Type 'history' to view our conversation.");
+        System.out.println("Bot: Type 'clear' to clear the history.");
+        System.out.println("Bot: Type 'bye' to exit.");
+
+        while (true) {
+
+            System.out.print("\nYou: ");
+            String input = scanner.nextLine().trim();
+
+            if (input.isEmpty()) {
+                System.out.println("Bot: Please type something.");
+                continue;
+            }
+
+            if (input.equalsIgnoreCase("history")) {
+                chatbot.showHistory();
+                continue;
+            }
+
+            if (input.equalsIgnoreCase("clear")) {
+                chatbot.clearHistory();
+                continue;
+            }
+
+            String response = chatbot.getResponse(input);
+
+            System.out.println("Bot: " + response);
+
+            if (input.equalsIgnoreCase("bye")
+                    || input.equalsIgnoreCase("exit")
+                    || input.equalsIgnoreCase("quit")) {
+                break;
+            }
+        }
+
+        System.out.println("\nBot: Thanks for chatting! Goodbye!");
+
+        scanner.close();
+    }
 }
